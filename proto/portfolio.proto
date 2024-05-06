@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option go_package = "github.com/jonathan-dotcom/asset-portfolio-management/proto";
+
+package portfolio;
+
+import "include/google/protobuf/empty.proto";
+
+service PortfolioService {
+  rpc CreateAsset(CreateAssetRequest) returns (Asset) {}
+  rpc GetAsset(GetAssetRequest) returns (Asset) {}
+  rpc UpdateAsset(UpdateAssetRequest) returns (Asset) {}
+  rpc DeleteAsset(DeleteAssetRequest) returns (google.protobuf.Empty) {}
+}
+
+message Asset {
+  string id = 1;
+  string name = 2;
+  double price = 3;
+  // Add more fields as needed
+}
+
+message CreateAssetRequest {
+  string name = 1;
+  double price = 2;
+  // Add more fields as needed
+}
+
+message GetAssetRequest {
+  string id = 1;
+}
+
+message UpdateAssetRequest {
+  string id = 1;
+  string name = 2;
+  double price = 3;
+  // Add more fields as needed
+}
+
+message DeleteAssetRequest {
+  string id = 1;
+}
