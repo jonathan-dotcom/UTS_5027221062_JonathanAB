@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package assets;
+option go_package = "github.com/jonathan-dotcom/asset-portfolio-management/asset";
+
+service AssetService {
+  rpc CreateAsset(CreateAssetRequest) returns (Asset) {}
+  rpc GetAsset(GetAssetRequest) returns (Asset) {}
+  rpc UpdateAsset(UpdateAssetRequest) returns (Asset) {}
+  rpc DeleteAsset(DeleteAssetRequest) returns (Empty) {}
+  rpc ListAssets(Empty) returns (AssetList) {}
+}
+
+message Asset {
+  string id = 1;
+  string symbol = 2;
+  int32 quantity = 3;
+  double price = 4;
+}
+
+message CreateAssetRequest {
+  string symbol = 1;
+  int32 quantity = 2;
+  double price = 3;
+}
+
+message GetAssetRequest {
+  string id = 1;
+}
+
+message UpdateAssetRequest {
+  string id = 1;
+  string symbol = 2;
+  int32 quantity = 3;
+  double price = 4;
+}
+
+message DeleteAssetRequest {
+  string id = 1;
+}
+
+message Empty {}
+
+message AssetList {
+  repeated Asset assets = 1;
+}
